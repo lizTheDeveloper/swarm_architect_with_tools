@@ -215,4 +215,6 @@ class SwarmArchitect:
 swarm_architect = SwarmArchitect()
 
 # swarm_architect.create_agents_for_goal("Please create a simple pair of agents that will function as a recruiter and reviewer. The recruiter agent will review the list of available agets and choose some that match the problem, then the critical agent is a reviewer to ensure we don't recruit too many agents- beyond 3 we encounter diminishing returns, so please only 3 agents can be returned. Thank you!")
-swarm_architect.create_agents_for_goal("Please create a swarm of agents that will make tools for a swarm of agents by making a plan for the tools, reviewing the plan, then creating the tools themselves.")
+# swarm_architect.create_agents_for_goal("Please create a swarm of agents that will make tools for a swarm of agents by making a plan for the tools, reviewing the plan, then creating the tools themselves.")
+
+swarm_architect.create_agents_for_goal("Please create a swarm of agents that will help Multiverse School students collaborate to find housing, and will assist in the housing-finding process through things like searching for housing, grants for schools to provide housing, and castle rehabilitation grants in europe, etc. We need agents to somehow get us a castle.")

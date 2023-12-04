@@ -89,7 +89,38 @@ class SwarmArchitect:
         )
         run = self.client.beta.threads.runs.create(
             thread_id=thread.id,
-            assistant_id=self.tool_reviewer_agent.id
+            assistant_id=self.tool_reviewer_agent.id,
+            tools=[{
+                "name": "request_tool",
+                "description": "Requests a tool",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                    "tool_name": {
+                        "type": "string",
+                        "description": "The name of the tool"
+                    },
+                    "tool_description": {
+                        "type": "string",
+                        "description": "The description of the tool"
+                    },
+                    "tool_inputs": {
+                        "type": "string",
+                        "description": "The inputs of the tool"
+                    },
+                    "tool_outputs": {
+                        "type": "string",
+                        "description": "The outputs of the tool"
+                    }
+                    },
+                    "required": [
+                    "tool_name",
+                    "tool_description",
+                    "tool_inputs",
+                    "tool_outputs"
+                    ]
+                }
+            }]
         )
         self.handle_tool_calls(run, thread)
         for message in self.client.beta.threads.messages.list(thread_id=thread.id):
@@ -516,7 +547,9 @@ swarm_architect = SwarmArchitect()
 # swarm_architect.determine_tool_needs_for_goal("Help me communicate using Twilio by SMS, email and whatsapp and telegram to my students and community")
 # swarm_architect.determine_tool_needs_for_goal("Help me manage a discord server by creating a bot that can manage the server and respond to commands, and summarize the conversations and report them to other channels")
 # swarm_architect.determine_tool_needs_for_goal("Help me export all the agents in my openai to json files so I can save them to a git repo, use client.beta.assistants.list()")
-swarm_architect.determine_tool_needs_for_goal("Please create a tool for sending email from gmail using the google api.")
+# swarm_architect.determine_tool_needs_for_goal("Please create a tool for sending email from gmail using the google api.")
+# swarm_architect.create_agents_for_goal("Please create a swarm of alignment AIs that are based off of the Sefirot from the Kabbalah")
 
+swarm_architect.determine_tool_needs_for_goal("help Multiverse School students collaborate to find housing, and will assist in the housing-finding process through things like searching for housing, grants for schools to provide housing, and castle rehabilitation grants in europe, etc. We need agents to somehow get us a castle.")
 
 swarm_architect.file.close() ## close the file when we're done - where should we put this? answer: 
